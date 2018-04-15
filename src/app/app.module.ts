@@ -5,26 +5,43 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { SignUpPage } from "../pages/sign-up/sign-up";
+import { InfoAdicionalPage } from './../pages/info-adicional/info-adicional';
+import { ListaPage } from './../pages/lista/lista';
+import { MainPage } from './../pages/main/main';
+import { CepProvider } from '../providers/cep/cep';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    LoginPage,
+    SignUpPage,
+    InfoAdicionalPage,
+    MainPage,
+    ListaPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    LoginPage,
+    SignUpPage,
+    InfoAdicionalPage,
+    MainPage,
+    ListaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CepProvider,
+    
   ]
 })
 export class AppModule {}

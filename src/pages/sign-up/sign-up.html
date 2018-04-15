@@ -1,0 +1,52 @@
+<!--
+  Generated template for the SignUpPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Cadastro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+        <ion-label floating>Nome</ion-label>
+        <ion-input [(ngModel)]="consumidor.nome" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Sobrenome</ion-label>
+        <ion-input (keyup)="log()" [(ngModel)]="consumidor.sobrenome" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Login</ion-label>
+        <ion-input (keyup)="log()" [(ngModel)]="usuario.login" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>E-mail</ion-label>
+        <ion-input (keyup)="log()" [(ngModel)]="usuario.email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Confirmar E-mail</ion-label>
+        <ion-input (keyup)="log()" [(ngModel)]="emailConfirma" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Senha</ion-label>
+        <ion-input (keyup)="log()" [(ngModel)]="usuario.senha" type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Confirmar Senha</ion-label>
+        <ion-input (keyup)="log()" [(ngModel)]="senhaConfirma" type="password"></ion-input>
+      </ion-item>
+  </ion-list>
+  <button icon-left margin-top color="primary" ion-button block (tap)="informacoesAdd()">
+    <ion-icon text-left name="add"></ion-icon>
+    Informações Adicionais
+  </button>
+  
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary" no-border>
+    <ion-title>
+      Login Home Shopping
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1 text-center>Realize o seu Login</h1>
+  <ion-list>
+    <ion-item>
+        <ion-label floating>Login</ion-label>
+        <ion-input [(ngModel)]="user" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Senha</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+      </ion-item>
+  </ion-list>
+  <button icon-left margin-top color="primary" ion-button block (tap)="logIn()">
+    <ion-icon text-left name="log-in"></ion-icon>
+    Entrar
+  </button>
+  <p text-center>Não possui um cadastro? <a (tap)="signUp()" style="font-weight: bold">Cadastre-se</a></p>
+</ion-content>
