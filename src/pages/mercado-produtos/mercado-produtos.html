@@ -1,0 +1,53 @@
+<!--
+  Generated template for the MercadoProdutosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Área do Mercado</ion-title>
+    <ion-buttons end>
+      <button (tap)="fecharPedido()" ion-button>
+          <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list *ngIf="produtos; else loading">
+    <ion-list-header text-wrap>
+      {{mercado.fantasia}} - Produtos
+    </ion-list-header>
+    <ion-item text-wrap *ngIf="!produtos.length">
+      <h1>Mercado não possui produtos cadastrados</h1>
+    </ion-item>
+    <ion-item *ngFor="let produto of produtos" text-wrap (tap)="showDialog(produto)">
+      <ion-avatar item-start>
+        <img src="{{produto.imagem}}">
+      </ion-avatar>
+      <h2>{{produto.nome}}</h2>
+      <ion-note item-end style="font-weight: bold">{{produto.preco | currency: 'BRL':'symbol'}}</ion-note>
+    </ion-item>
+  </ion-list>
+  <ng-template #loading>
+      <ion-row justify-content-center>
+        <ion-spinner></ion-spinner>
+      </ion-row>
+  </ng-template> 
+</ion-content>
+<ion-footer>
+
+  <ion-toolbar color="secondary">
+    <ion-searchbar placeholder="Filtrar Produtos"
+      [(ngModel)]="search"
+      [showCancelButton]="true"
+      (ionInput)="onInput($event)"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+
+</ion-footer>

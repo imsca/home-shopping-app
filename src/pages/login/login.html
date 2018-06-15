@@ -7,20 +7,29 @@
 </ion-header>
 
 <ion-content padding>
-  <h1 text-center>Realize o seu Login</h1>
-  <ion-list>
-    <ion-item>
+  <div *ngIf="render; else loading">
+    <h1 text-center>Realize o seu Login</h1>
+    <ion-list>
+      <ion-item>
         <ion-label floating>Login</ion-label>
-        <ion-input [(ngModel)]="user" type="text"></ion-input>
+        <ion-input [(ngModel)]="user.login" type="text"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Senha</ion-label>
-        <ion-input [(ngModel)]="password" type="password"></ion-input>
+        <ion-input [(ngModel)]="user.senha" type="password"></ion-input>
       </ion-item>
-  </ion-list>
-  <button icon-left margin-top color="primary" ion-button block (tap)="logIn()">
-    <ion-icon text-left name="log-in"></ion-icon>
-    Entrar
-  </button>
-  <p text-center>Não possui um cadastro? <a (tap)="signUp()" style="font-weight: bold">Cadastre-se</a></p>
+    </ion-list>
+    <button icon-left margin-top color="primary" ion-button block (tap)="logIn()">
+      <ion-icon text-left name="log-in"></ion-icon>
+      Entrar
+    </button>
+    <p text-center>Não possui um cadastro?
+      <a (tap)="signUp()" style="font-weight: bold">Cadastre-se</a>
+    </p>
+  </div>
+  <ng-template #loading>
+    <ion-row justify-content-center>
+      <ion-spinner></ion-spinner>
+    </ion-row>
+  </ng-template>
 </ion-content>

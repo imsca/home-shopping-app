@@ -1,0 +1,32 @@
+<!--
+  Generated template for the ListaPedidosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+      <button ion-button [menuToggle]="menuActive">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Pedidos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header text-wrap>
+      Pedidos Realizados
+    </ion-list-header>
+    <ion-item text-wrap *ngIf="pedido != undefined" text-wrap (tap)="showModal(pedido)">
+      <ion-avatar item-start>
+        <ion-icon name="cart"></ion-icon>
+      </ion-avatar>
+      <h2>Pedido do dia: {{pedido.data | date:'dd/MM/yyyy'}}</h2>
+      <ion-note item-end style="font-weight: bold">Total: {{pedido.total | currency: 'BRL':'symbol'}}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

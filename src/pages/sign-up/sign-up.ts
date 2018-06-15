@@ -1,3 +1,4 @@
+import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { InfoAdicionalPage } from './../info-adicional/info-adicional';
 import { Usuario, Consumidor } from './../../providers/model/model';
 import { Component } from '@angular/core';
@@ -20,16 +21,14 @@ export class SignUpPage {
     nome: '',
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              public toast: ToastController) {
+  constructor(public navCtrl: NavController
+            , public navParams: NavParams
+            , public toast: ToastController
+            , public usuarioProvider: UsuarioProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignUpPage');
-  }
-
-  log() {
-    console.log(this.consumidor);
   }
 
   informacoesAdd() {

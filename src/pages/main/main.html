@@ -1,23 +1,32 @@
-<!--
-  Generated template for the MainPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-    <ion-navbar color="primary">
-      <button ion-button [menuToggle]="menuActive">
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>
-        Página Inicial
-      </ion-title>
-    </ion-navbar>
-  
+  <ion-navbar color="primary">
+    <button ion-button [menuToggle]="menuActive">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Mercados Disponíveis
+    </ion-title>
+  </ion-navbar>
 </ion-header>
-  
+
 
 <ion-content padding>
-
+  <ion-list *ngIf="mercados$ | async as mercados; else loading">
+    <ion-list-header text-wrap>
+      Mercados da Região
+    </ion-list-header>
+    <ion-item *ngFor="let mercado of mercados" (tap)="visualizarMercado(mercado)" text-wrap>
+      <ion-avatar item-start>
+        <img src="{{mercado.foto}}">
+      </ion-avatar>
+      <h2>{{mercado.fantasia}}</h2>
+      <h3>{{mercado.endereco.logradouro}}, {{mercado.endereco.numero}}</h3>
+      <p>Aberto</p>
+    </ion-item>
+  </ion-list>
+  <ng-template #loading>
+    <ion-row justify-content-center>
+      <ion-spinner></ion-spinner>
+    </ion-row>
+  </ng-template> 
 </ion-content>

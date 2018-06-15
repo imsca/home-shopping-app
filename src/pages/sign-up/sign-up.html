@@ -21,27 +21,27 @@
       </ion-item>
       <ion-item>
         <ion-label floating>Sobrenome</ion-label>
-        <ion-input (keyup)="log()" [(ngModel)]="consumidor.sobrenome" type="text"></ion-input>
+        <ion-input [(ngModel)]="consumidor.sobrenome" type="text"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Login</ion-label>
-        <ion-input (keyup)="log()" [(ngModel)]="usuario.login" type="text"></ion-input>
+        <ion-input [(ngModel)]="usuario.login" type="text"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>E-mail</ion-label>
-        <ion-input (keyup)="log()" [(ngModel)]="usuario.email" type="email"></ion-input>
+        <ion-input [(ngModel)]="usuario.email" type="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Confirmar E-mail</ion-label>
-        <ion-input (keyup)="log()" [(ngModel)]="emailConfirma" type="email"></ion-input>
+        <ion-input [(ngModel)]="emailConfirma" type="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Senha</ion-label>
-        <ion-input (keyup)="log()" [(ngModel)]="usuario.senha" type="password"></ion-input>
+        <ion-input [(ngModel)]="usuario.senha" type="password"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Confirmar Senha</ion-label>
-        <ion-input (keyup)="log()" [(ngModel)]="senhaConfirma" type="password"></ion-input>
+        <ion-input [(ngModel)]="senhaConfirma" type="password"></ion-input>
       </ion-item>
   </ion-list>
   <button icon-left margin-top color="primary" ion-button block (tap)="informacoesAdd()">

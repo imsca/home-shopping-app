@@ -18,10 +18,20 @@
       <ion-label floating>RG</ion-label>
       <ion-input [(ngModel)]="consumidor.rg" type="text"></ion-input>
     </ion-item>
-    
     <ion-item>
       <ion-label floating>CPF</ion-label>
       <ion-input [(ngModel)]="consumidor.cpf" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Telefone</ion-label>
+      <ion-input [(ngModel)]="consumidor.telefone" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label floating>Gênero</ion-label>
+      <ion-select [(ngModel)]="consumidor.sexo">
+        <ion-option value="m">Masculino</ion-option>
+        <ion-option value="f">Feminino</ion-option>
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-label floating>Data Nascimento</ion-label>

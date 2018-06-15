@@ -1,6 +1,8 @@
+
+import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { CepProvider } from './../../providers/cep/cep';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Consumidor, Endereco } from '../../providers/model/model';
 
 /**
@@ -25,16 +27,16 @@ export class InfoAdicionalPage {
     bairro: '',
     uf: ''
   };
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public cepProvider: CepProvider) {
+
+  constructor(public navCtrl: NavController
+            , public navParams: NavParams
+            , public cepProvider: CepProvider
+            , public usuarioProvider: UsuarioProvider
+            , public alertCtrl: AlertController
+          ) {
     this.consumidor = this.navParams.get('consumidor');
   }
-  ionViewWillEnter() {
 
-  }
-  ionViewDidLoad() {
-  }
 
   consultaCep(event: any) {
     if(/[0-9]{8}/.test(this.endereco.cep.trim())){
@@ -47,8 +49,32 @@ export class InfoAdicionalPage {
         });
     }
   }
+
   cadastrar() {
     this.consumidor.endereco = this.endereco;
-    console.log(this.consumidor);
+    this.usuarioProvider
+      .postConsumidor(this.consumidor)
+      .subscribe(data => {
+        if(data.id) {
+          this.alertSuccess();
+        }
+    });
+  }
+  alertSuccess() {
+    this.alertCtrl.create({
+      title: 'Usuário cadastrado com sucesso',
+      message: 'Agora você poderá utilizar o aplicativo',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.navCtrl.popToRoot();
+          }
+        }
+      ]
+    }).present();
+  }
+  alertFail() {
+
   }
 }

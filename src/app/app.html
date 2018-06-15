@@ -14,16 +14,21 @@
         Mercados
       </button>
 
+      <button (tap)="listaPedidoPage()" icon-left ion-item menuClose="menu" detail-none>
+        <ion-icon name="list-box"></ion-icon>
+        Lista de Pedidos
+      </button>
+
       <button icon-left ion-item menuClose="menu" detail-none>
         <ion-icon name="bookmarks"></ion-icon>
-        Listas de Compras
+        Lista de Compras
       </button>
 
       <button icon-left ion-item menuClose="menu" detail-none>
         <ion-icon name="information-circle"></ion-icon>
         Informações Pessoais
       </button>
-      
+
       <button (tap)="logOut()" icon-left ion-item menuClose="menu" detail-none>
         <ion-icon name="log-out"></ion-icon>
         Sair
