@@ -3,9 +3,10 @@ import { FormaPagamentoProvider } from './../../providers/forma-pagamento/forma-
 import { ListaPedidosPage } from './../lista-pedidos/lista-pedidos';
 import { MercadoProvider } from './../../providers/mercado/mercado';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, ModalController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { Produto, Pedido, FormaPagamento } from '../../providers/model/model';
+import { PedidoPagamentoPage } from '../pedido-pagamento/pedido-pagamento';
 
 @IonicPage()
 @Component({
@@ -20,8 +21,10 @@ export class MercadoProdutosPage {
   public produtosCopy: Produto[];
   public pedido: Pedido = {
     produtos: [],
-    data: new Date(),
-    total: 0
+    dataPedido: new Date(),
+    total: 0,
+    pagamento: {
+    }
   };
 
   constructor(public navCtrl: NavController, 
@@ -29,8 +32,11 @@ export class MercadoProdutosPage {
     public mercadoProvider: MercadoProvider,
     public alertCtrl: AlertController,
     public formaPagamentoProvider: FormaPagamentoProvider,
-    public storage: Storage) {
+    public storage: Storage,
+    public toastCtrl: ToastController,
+    public modalCtrl: ModalController) {
     this.mercado = this.navParams.get('mercado');
+     
   }
 
 
@@ -55,14 +61,20 @@ export class MercadoProdutosPage {
         {
           text: 'Adicionar',
           handler: (data) => {
-            this.pedido.produtos.push({
-              id: produto.id,
-              nome: produto.nome,
-              preco: produto.preco,
-              quantidade: data.quantidade,
-              imagem: produto.imagem
-            });
-            
+            var hasPassed: boolean;
+            if(new Number(data.quantidade) > 0) {
+              this.pedido.produtos.push({
+                id: produto.id,
+                nome: produto.nome,
+                preco: produto.preco,
+                quantidade: data.quantidade,
+                imagem: produto.imagem
+              });
+              hasPassed = true;
+            } else {
+              hasPassed = false;
+            }
+            this.showToast(hasPassed);
           }
         }
       ]
@@ -112,9 +124,13 @@ export class MercadoProdutosPage {
     dialog.addButton({
       text: 'OK',
       handler: (data: any) => {
+        let value = JSON.parse(data);
         this.pedido.formaPagamento = {
-          id: data
+          id: value.id,
+          descricao: value.descricao
         }
+        this.navCtrl.push(PedidoPagamentoPage, {pedido: this.pedido});
+        /*
         console.log(this.pedido);
         this.mercadoProvider.postPedido(this.pedido)
           .subscribe(response => {
@@ -130,7 +146,7 @@ export class MercadoProdutosPage {
                   }
                 ]
               }).present();
-          });
+          });*/
       }
     });
 
@@ -141,7 +157,7 @@ export class MercadoProdutosPage {
           dialog.addInput({
             type: 'radio',
             label: forma.descricao,
-            value: forma.id.toString(),
+            value: JSON.stringify(forma),
           });
         });
         dialog.present();
@@ -163,5 +179,23 @@ export class MercadoProdutosPage {
   onCancel(): void {
     this.search = '';
   }
-
+  showToast(hasPassed: boolean): void {
+    if(hasPassed) {
+      this.showToastAdd();
+    } else {
+      this.showToastErro();
+    }
+  }
+  showToastErro(): void {
+    this.toastCtrl.create({
+      message: 'Produto não adicionado',
+      duration: 2300
+    }).present();
+  }
+  showToastAdd(): void {
+    this.toastCtrl.create({
+      message: 'Produto adicionado ao carrinho',
+      duration: 2300
+    }).present();
+  }
 }

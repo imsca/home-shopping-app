@@ -19,11 +19,14 @@
 
 <ion-content padding>
   <ion-list *ngIf="produtos; else loading">
-    <ion-list-header text-wrap>
+    <ion-list-header color="secondary" text-wrap>
       {{mercado.fantasia}} - Produtos
     </ion-list-header>
-    <ion-item text-wrap *ngIf="!produtos.length">
+    <ion-item text-wrap *ngIf="!produtos.length && !search">
       <h1>Mercado não possui produtos cadastrados</h1>
+    </ion-item>
+    <ion-item text-wrap *ngIf="!produtos.length && search">
+      <h1>O mercado não possui estes produtos</h1>
     </ion-item>
     <ion-item *ngFor="let produto of produtos" text-wrap (tap)="showDialog(produto)">
       <ion-avatar item-start>

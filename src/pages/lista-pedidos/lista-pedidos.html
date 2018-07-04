@@ -17,16 +17,22 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-list-header text-wrap>
+  <ion-list *ngIf="pedidos$ | async as pedidos; else loading">
+    <ion-list-header color="secondary" text-wrap>
       Pedidos Realizados
     </ion-list-header>
-    <ion-item text-wrap *ngIf="pedido != undefined" text-wrap (tap)="showModal(pedido)">
+    <ion-item text-wrap *ngFor="let pedido of pedidos" (tap)="showModal(pedido)">
       <ion-avatar item-start>
         <ion-icon name="cart"></ion-icon>
-      </ion-avatar>
-      <h2>Pedido do dia: {{pedido.data | date:'dd/MM/yyyy'}}</h2>
+      </ion-avatar><!-- | -->
+      <h2>Código: {{pedido.id}}</h2>
+      <h3>Pedido do dia: {{pedido.dataPedido | date:'dd/MM/yyyy'}}</h3>
       <ion-note item-end style="font-weight: bold">Total: {{pedido.total | currency: 'BRL':'symbol'}}</ion-note>
     </ion-item>
   </ion-list>
+  <ng-template #loading>
+    <ion-row justify-content-center>
+      <ion-spinner></ion-spinner>
+    </ion-row>
+  </ng-template> 
 </ion-content>

@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { ListaPage } from './../pages/lista/lista';
 import { MainPage } from './../pages/main/main';
+import { InformacoesPessoaisPage } from '../pages/informacoes-pessoais/informacoes-pessoais';
 @Component({
   templateUrl: 'app.html'
 })
@@ -35,6 +36,9 @@ export class MyApp {
   }
   listaPedidoPage() {
     this.nav.setRoot(ListaPedidosPage);
+  }
+  informacoesPessoais() {
+    this.nav.setRoot(InformacoesPessoaisPage);
   }
 }
 

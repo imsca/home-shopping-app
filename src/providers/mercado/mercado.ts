@@ -29,5 +29,10 @@ export class MercadoProvider {
       headers: headers
     });
   }
-  
+  getPedidos(id: number): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(`${Endpoint.SERVICE}/${Endpoint.PEDIDO}/${Endpoint.CONSUMIDOR}/${id}`);
+  }
+  getItensPedido(id: number): Observable<Produto[]> {
+    return this.http.get<Produto[]>(`${Endpoint.SERVICE}/${Endpoint.ITEM_PEDIDO}/${id}`);
+  }
 }

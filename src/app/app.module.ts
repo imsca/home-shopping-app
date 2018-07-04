@@ -1,3 +1,5 @@
+import { DadosPessoaisPage } from './../pages/dados-pessoais/dados-pessoais';
+import { DadosContaPage } from './../pages/dados-conta/dados-conta';
 import { ListaPedidosPage } from './../pages/lista-pedidos/lista-pedidos';
 import { MercadoProdutosPage } from './../pages/mercado-produtos/mercado-produtos';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +20,8 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 import { MercadoProvider } from '../providers/mercado/mercado';
 import { ListaPedidosItensPage } from '../pages/lista-pedidos-itens/lista-pedidos-itens';
 import { FormaPagamentoProvider } from '../providers/forma-pagamento/forma-pagamento';
+import { PedidoPagamentoPage } from '../pages/pedido-pagamento/pedido-pagamento';
+import { InformacoesPessoaisPage } from '../pages/informacoes-pessoais/informacoes-pessoais';
 
 
 @NgModule({
@@ -30,7 +34,11 @@ import { FormaPagamentoProvider } from '../providers/forma-pagamento/forma-pagam
     ListaPage,
     MercadoProdutosPage,
     ListaPedidosPage,
-    ListaPedidosItensPage
+    ListaPedidosItensPage,
+    PedidoPagamentoPage,
+    InformacoesPessoaisPage,
+    DadosContaPage,
+    DadosPessoaisPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +56,11 @@ import { FormaPagamentoProvider } from '../providers/forma-pagamento/forma-pagam
     ListaPage,
     MercadoProdutosPage,
     ListaPedidosPage,
-    ListaPedidosItensPage
+    ListaPedidosItensPage,
+    PedidoPagamentoPage,
+    InformacoesPessoaisPage,
+    DadosContaPage,
+    DadosPessoaisPage
   ],
   providers: [
     StatusBar,

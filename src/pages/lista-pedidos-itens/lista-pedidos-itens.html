@@ -7,9 +7,9 @@
 <ion-header>
 
   <ion-navbar color="primary">
-      <ion-buttons start>
-        <button ion-button (click)="dismiss()">Fechar</button>
-      </ion-buttons>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Fechar</button>
+    </ion-buttons>
     <ion-title>Produtos Pedidos</ion-title>
   </ion-navbar>
 
@@ -17,11 +17,18 @@
 
 
 <ion-content padding>
+  <ion-list *ngIf="items$ | async as items; else loading">
     <ion-item *ngFor="let item of items" text-wrap>
       <ion-avatar item-start>
         <img src="{{item.imagem}}">
       </ion-avatar>
-        <h2>{{item.nome}}</h2>
-        <ion-note item-end style="font-weight: bold">{{item.preco | currency: 'BRL':'symbol'}}</ion-note>
+      <h2>{{item.nome}}</h2>
+      <ion-note item-end style="font-weight: bold">{{item.preco | currency: 'BRL':'symbol'}}</ion-note>
     </ion-item>
+  </ion-list>
+  <ng-template #loading>
+    <ion-row justify-content-center>
+      <ion-spinner></ion-spinner>
+    </ion-row>
+  </ng-template> 
 </ion-content>

@@ -1,0 +1,49 @@
+<!--
+  Generated template for the PedidoPagamentoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Pagamento - {{pedido.formaPagamento.descricao}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Insira a quantia em dinheiro</ion-label>
+      <ion-input [(ngModel)]="pedido.pagamento.valor" (keyup)="calcularTroco()" type="number"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center>
+        <p>Informações da compra</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset-6>
+        <div>Valor total:</div>
+      </ion-col>
+      <ion-col>
+        <div>R${{pedido.total | number : '1.2-2'}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset-6>
+        <div>Troco:</div>
+      </ion-col>
+      <ion-col>
+        <div [style.color]="pedido.pagamento.valor < pedido.total ? 'red' : '#43a047'">R${{pedido.pagamento.troco | number : '1.2-2'}}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <button icon-left margin-top color="primary" ion-button block (tap)="processarPagamento()">
+    <ion-icon text-left name="checkmark-circle"></ion-icon>
+    Fechar Pedido
+  </button>
+</ion-footer>

@@ -41,7 +41,7 @@ export interface Produto {
 }
 export interface Pedido {
   id?: number
-  data?: Date;
+  dataPedido?: Date;
   total?: number;
   produtos?: Produto[];
   pagamento?: Pagamento;
@@ -67,4 +67,5 @@ export class Endpoint {
   public static readonly VAREJO = 'varejos';
   public static readonly PRODUTO = 'produtos';
   public static readonly PEDIDO = 'pedido';
+  public static readonly ITEM_PEDIDO = 'itempedido';
 }

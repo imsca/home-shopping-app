@@ -12,7 +12,7 @@
 
 <ion-content padding>
   <ion-list *ngIf="mercados$ | async as mercados; else loading">
-    <ion-list-header text-wrap>
+    <ion-list-header color="secondary" text-wrap>
       Mercados da Região
     </ion-list-header>
     <ion-item *ngFor="let mercado of mercados" (tap)="visualizarMercado(mercado)" text-wrap>

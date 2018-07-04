@@ -1,6 +1,10 @@
+import { Storage } from '@ionic/storage';
+import { MercadoProvider } from './../../providers/mercado/mercado';
 import { ListaPedidosItensPage } from './../lista-pedidos-itens/lista-pedidos-itens';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
+import { Pedido } from '../../providers/model/model';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Generated class for the ListaPedidosPage page.
@@ -15,15 +19,16 @@ import { IonicPage, NavController, NavParams, MenuController, ModalController } 
   templateUrl: 'lista-pedidos.html',
 })
 export class ListaPedidosPage {
-  public pedido: any;
+  public pedidos$: Observable<Pedido[]>;
+  public pedidos: Pedido[];
   public menuActive: string = '';
-  constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-     public menuController: MenuController,
-     public modalCtrl: ModalController) {
 
-    this.pedido = this.navParams.get('pedido');
-    console.log(this.pedido);
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public menuController: MenuController,
+    public modalCtrl: ModalController,
+    public mercadoProvider: MercadoProvider,
+    public storage: Storage) {
     this.enableMenu();
   }
 
@@ -33,11 +38,15 @@ export class ListaPedidosPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ListaPedidosPage');
+    this.storage.get('user')
+      .then(value => {
+        this.pedidos$ = this.mercadoProvider.getPedidos(value.id);
+      });
+    
   }
 
-  showModal(): void {
-    this.modalCtrl.create(ListaPedidosItensPage, {items: this.pedido.items}).present();
+  showModal(pedido: Pedido): void {
+    this.modalCtrl.create(ListaPedidosItensPage, { pedido: pedido }).present();
   }
 
 }
